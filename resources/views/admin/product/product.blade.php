@@ -7,7 +7,7 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: -40px">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="row align-items-center my-4">
@@ -23,29 +23,23 @@
 
                 <div class="row my-4">
                     <!-- Small table -->
-                    <div class="col-md-12">
+                    <div class="col-md-12"  style="margin-top: -20px">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
-                                <div id="dataTable-1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-fotter">
-                                    <label class="searchs">Search:</label>
-                                    <input type="search" placeholder="" aria-controls="dataTable-1"
-                                        class="form-controls fomr-control-sm">
-                                </div>
                                 <table class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
                                             <th style="width: 2%"></th>
                                             <th style="width: 3%">Code</th>
-                                            <th style="width: 7%">Product</th>
+                                            <th style="width: 10%">Product</th>
                                             <th style="width: 8%">Price</th>
-                                            <th style="width: 5%">category</th>
-                                            <th style="width: 5%">Sub category</th>
-                                            <th style="width: 10%">Slug</th>
-                                            <th style="width: 13%">Description</th>
+                                            <th style="width: 7%">category</th>
+                                            <th style="width: 8%">Sub category</th>
+                                            <th style="width: 18%">Description</th>
                                             <th style="width: 25%">Image</th>
                                             <th style="width: 5%">Status</th>
-                                            <th style="width: 7%">Action</th>
+                                            <th style="width: 14%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,7 +58,6 @@
                                                 <td>&#2547 {{ $product->price }}</td>
                                                 <td>{{ $product->category->name }}</td>
                                                 <td>{{ $product->subcategory->name }}</td>
-                                                <td>{{ $product->slug }}</td>
                                                 <td>{{ $product->description }}</td>
                                                 <td>
                                                     @foreach ($product->file as $images)
@@ -79,7 +72,48 @@
                                                     <span class="label label-danger">Deactive</span>
                                                 @endif  
                                                 </td>
-                                                <td>
+
+                                                <td class="center" style="float: center;">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 p-1">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    @if ($product->status == 1)
+                                                                        <a class="btn btn-success"
+                                                                            href="{{ url('/product_status/' . $product->id) }}">
+                                                                            <i class="halflings-icon white thumbs-up"></i>
+                                                                        </a>
+                                                                    @else
+                                                                        <a class="btn btn-danger"
+                                                                            href="{{ url('/product_status/' . $product->id) }}">
+                                                                            <i class="halflings-icon white thumbs-down"></i>
+                                                                        </a>
+                                                                    @endif
+
+                                                                </div>
+                                                                <div class="col-lg">
+                                                                    <a class="btn btn-info"
+                                                                        href="{{ url('/product/' . $product->id . '/edit') }}">
+                                                                        <i class="halflings-icon white edit"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6  p-1">
+                                                            <form action="{{ url('product/' . $product->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger" id="delete">
+                                                                    <i class="halflings-icon white trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+
+                                                {{-- <td>
                                                     <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <span class="text-muted sr-only">Action</span>
@@ -108,7 +142,7 @@
                                                             @endif
                                                         </form>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

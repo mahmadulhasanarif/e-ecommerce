@@ -21,6 +21,7 @@
 
 
         <div class="row">
+            <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="card shadow mb-4">
                     <div class="card-body">
@@ -29,7 +30,7 @@
                             @if ($product->id)
                                 @method('put')
                             @endif
-                            <h1 class="h6 mb-3 text-center">Product From</h1>
+                            <h1 class="h5 mb-3 text-center">Product From</h1>
 
                             <div class="form-group-sm">
                                 <input type="text" name="code" id="inputTitle" value="{{ old('code', $product->code) }}"

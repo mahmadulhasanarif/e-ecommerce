@@ -7,7 +7,7 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: -40px">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="row align-items-center my-4">
@@ -23,24 +23,20 @@
 
                 <div class="row my-4">
                     <!-- Small table -->
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="margin-top: -20px">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
-                                <div id="dataTable-1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-fotter">
-                                    <label class="searchs">Search:</label>
-                                    <input type="search" placeholder="" aria-controls="dataTable-1"
-                                        class="form-controls fomr-control-sm">
-                                </div>
+                           
                                 <table class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
                                             <th style="width: 5%">#</th>
                                             <th style="width: 10%">ID</th>
                                             <th style="width: 45%">Size</th>
-                                            <th style="width: 15%">Status</th>
-                                            <th style="width: 15%">Date</th>
-                                            <th style="width: 10%">Action</th>
+                                            <th style="width: 7%">Status</th>
+                                            <th style="width: 21%">Date</th>
+                                            <th style="width: 12%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,9 +50,9 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td class="row">
                                                     @foreach (Json_decode($size->size) as $sizess)
-                                                            <ul class="col col-lg-4">
-                                                                {{ $sizess }}
-                                                            </ul>
+                                                        <ul class="col col-lg-4">
+                                                            {{ $sizess }}
+                                                        </ul>
                                                     @endforeach
                                                 </td>
                                                 <td>
@@ -66,30 +62,42 @@
                                                         <span class="label label-danger">Deactive</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $size->created_at }}</td>
+                                                <td class="center">
+                                                    {{ \Carbon\Carbon::parse($size->created_at)->format('M d, Y, h:iA') }}
+                                                </td>
 
-                                                <td>
-                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
 
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <form action="{{ url('size/' . $size->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('delete')
-
-                                                            <button type="submit"
-                                                                class=" btn btn-outline-danger ">Remove</button>
-                                                            <a class="btn btn-outline-warning"
-                                                                href="{{ url('size/' . $size->id . '/edit') }}">Edit</a>
+                                                <td class="center" style="float: center;">
+                                                    <div class="row">
+                                                        <div class="col p-1">
                                                             @if ($size->status == 1)
-                                                            <input data-id="{{$size->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $size->status ? 'checked' : '' }}>
+                                                                <a class="btn btn-success"
+                                                                    href="{{ url('/size_status/' . $size->id) }}">
+                                                                    <i class="halflings-icon white thumbs-up"></i>
+                                                                </a>
                                                             @else
-                                                            <input data-id="{{$size->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="InActive" data-off="Active" {{ $size->status ? 'checked' : '' }}>
-                                                            
+                                                                <a class="btn btn-denger"
+                                                                    href="{{ url('/size_status/' . $size->id) }}">
+                                                                    <i class="halflings-icon white thumbs-down"></i>
+                                                                </a>
                                                             @endif
-                                                        </form>
+                                                        </div>
+                                                        <div class="col p-1">
+                                                            <a class="btn btn-info"
+                                                                href="{{ url('/size/' . $size->id . '/edit') }}">
+                                                                <i class="halflings-icon white edit"></i>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col p-1">
+                                                            <form action="{{ url('size/' . $size->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger" id="delete">
+                                                                    <i class="halflings-icon white trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -103,5 +111,4 @@
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
-
 @endsection

@@ -10,14 +10,14 @@
         <h1 class="h6 mb-3">Sub-Category From</h1>
         <div class="form-group">
             <label for="inputEmail" class="sr-only">SubCategory Name:</label>
-            <input type="text" name="name" id="inputEmail" value="{{old('name', $subcategory->name)}}"
+            <input type="text" name="name" id="inputEmail" value="{{ old('name', $subcategory->name) }}"
                 class="form-control form-control-lg @error('name') is-invalid @else is-valid @enderror"
                 placeholder="SubCategory Name" required="" autofocus="">
         </div>
 
         <div class="form-group">
             <label for="inputEmail" class="sr-only">SubCategory title:</label>
-            <input type="text" name="title" id="inputTitle" value="{{old('title', $subcategory->title)}}"
+            <input type="text" name="title" id="inputTitle" value="{{ old('title', $subcategory->title) }}"
                 class="form-control form-control-lg @error('title') is-invalid @else is-valid @enderror"
                 placeholder="SubCategory Title" required="" autofocus="">
         </div>
@@ -28,14 +28,14 @@
                 class="form-control form-control-lg  @error('category_id') is-invalid @else is-valid @enderror">
                 <option selected="">Select Category Name</option>
                 @foreach ($categories as $category)
-                    <option value="{{$category->id}} @if (old('category_id' == $category->id )) @endif" ? selected=true >{{ $category->name }}</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="form-group">
             <label for="inputPassword" class="sr-only">Sub-Category Slug</label>
-            <input type="text" name="slug" id="inputSlug" value="{{old('slug', $subcategory->slug)}}"
+            <input type="text" name="slug" id="inputSlug" value="{{ old('slug', $subcategory->slug) }}"
                 class="form-control form-control-lg  @error('name') is-invalid @else is-valid @enderror"
                 placeholder="Category Slug" required="">
         </div>
@@ -44,7 +44,8 @@
             <label for="inputEmail" class="sr-only">SubCategory Description:</label>
             <textarea name="description"
                 class="form-control form-control-lg  @error('description') is-invalid @else is-valid @enderror" rows="3"
-                placeholder="Sub Category Description" required="">{{old('description', $subcategory->description)}}</textarea>
+                placeholder="Sub Category Description"
+                required="">{{ old('description', $subcategory->description) }}</textarea>
         </div>
         @if ($subcategory->image)
             <img src="{{ $subcategory->image }}" alt="" width="100px" height="100px">

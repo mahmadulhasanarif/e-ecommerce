@@ -31,15 +31,29 @@ Auth::routes(['verify'=> true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware('is_admin')->group(function(){
+    /*--Category Route--*/
     Route::resource('category', CategoryController::class)->except('show', 'update', 'edit');
+    Route::get('/category_status/{category}', [CategoryController::class, 'status']);
+
+    /*--Sub Category Route--*/
     Route::resource('subcategory', SubCategoryController::class)->except('show');
+    Route::get('/subcategory_status/{subcategory}', [SubCategoryController::class, 'status']);
+
+    /*--Unit Route--*/
     Route::resource('unit', UnitController::class);
+
+    /*--size Route--*/
     Route::resource('size', SizeController::class);
-    Route::get('/changeSize', [SizeController::class, 'change_status']);
+    Route::get('/size_status/{size}', [SizeController::class, 'status']);
+
+    /*--Color Route--*/
     Route::resource('/color', ColorController::class);
-    Route::get('/changeColor', [ColorController::class, 'change_status']);
+    Route::get('/color_status/{color}', [ColorController::class, 'status']);
+
+    /*--Product Route--*/
     Route::resource('product', ProductController::class);
-    Route::get('changeProduct', [ProductController::class, 'change_status']);
+    Route::get('/product_status/{product}', [ProductController::class, 'status']);
+
     Route::resource('brand', BrandController::class);
     Route::resource('admin', AdminController::class)->except('show');
 

@@ -1,20 +1,19 @@
 @extends('admin.master')
 
 @section('content')
-
     @if (session('message'))
         <div class="alert alert-success" role="alert">
             {{ session('message') }}
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: -40px">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="row align-items-center my-4">
                     <div class="col">
                         <h2 class="h3 mb-0 page-title">Brand Product Table</h2>
-                        <p class="card-text">eCommerce Product table </p>
+                        <p class="card-text">eCommerce Brand table </p>
                     </div>
                     <div class="col-auto">
                         <a href="{{ route('brand.create') }}" class="btn btn-primary"><span
@@ -24,24 +23,20 @@
 
                 <div class="row my-4">
                     <!-- Small table -->
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="margin-top: -20px">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
-                                <div id="dataTable-1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-fotter">
-                                    <label class="searchs">Search:</label>
-                                    <input type="search" placeholder="" aria-controls="dataTable-1" class="form-controls fomr-control-sm">
-                                </div>
                                 <table class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Title</th>
-                                            <th>slug</th>
-                                            <th>Date</th>
-                                            <th>Action</th>
+                                            <th style="width: 5%">#</th>
+                                            <th style="width: 10%">ID</th>
+                                            <th style="width: 12%">Name</th>
+                                            <th style="width: 21%">Title</th>
+                                            <th style="width: 20%">slug</th>
+                                            <th style="width: 20%">Date</th>
+                                            <th style="width: 12%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,21 +53,33 @@
                                                 <td>{{ $brand->slug }}</td>
                                                 <td>{{ $brand->created_at }}</td>
 
-                                                <td>
-                                                    <button class="btn btn-sm dropdown-toggle more-horizontal"
-                                                        type="button" data-toggle="dropdown" aria-haspopup="true"
-                                                        aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
 
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <form action="{{ url('brand/' . $brand->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button class=" btn btn-outline-danger ">Remove</button>
-                                                            <a class="btn btn-outline-warning" href="{{url('brand/'.$brand->id)}}">View</a>
-                                                        </form>
+                                                <td class="center" style="float: center;">
+                                                    <div class="row">
+                                                        <div class="col p-1">
+                                                                <a class="btn btn-info"
+                                                                    href="{{ url('/brand/' . $brand->id . '/edit') }}">
+                                                                    <i class="halflings-icon white edit"></i>
+                                                                </a>
+                                                        </div>
+
+                                                        <div class="col p-1">
+                                                            <a class="btn btn-info"
+                                                                href="{{ url('/brand/' . $brand->id) }}">
+                                                                <i class="halflings-icon white info"></i>
+                                                            </a>
+                                                    </div>
+
+                                                        <div class="col p-1">
+                                                            <form action="{{ url('brand/' . $brand->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger" id="delete">
+                                                                    <i class="halflings-icon white trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -86,5 +93,4 @@
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->
-  
 @endsection

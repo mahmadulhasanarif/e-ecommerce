@@ -47,15 +47,15 @@ class ColorController extends Controller
         return redirect()->to('color');
     }
 
-    public function change_status(Request $request)
+    public function status(Color $color)
     {
-        {
-            $color = Color::find($request->id);
-            $color->status = $request->status;
-            $color->save();
-      
-            return response()->json(['success'=>'Color status change successfully.']);
+        if ($color->status == 1){
+            $color->update(['status'=> 0]);
+        }else{
+            $color->update(['status'=>1]);
         }
+        Session::flash('message', "Color Status Update successfully");
+        return redirect()->back();
     }
     /**
      * Show the form for editing the specified resource.

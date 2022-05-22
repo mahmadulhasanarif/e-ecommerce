@@ -51,6 +51,17 @@ class SubCategoryController extends Controller
         return redirect()->to('subcategory');
     }
 
+    public function status(Subcategory $subcategory)
+   {
+        if ($subcategory->status == 1){
+            $subcategory->update(['status'=> 0]);
+        }else{
+            $subcategory->update(['status'=> 1]);
+        }
+        Session::flash('message', "subcategory Status Update successfully");
+        return redirect()->back();
+   }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -49,6 +49,17 @@ class CategoryController extends Controller
         return redirect()->to('category');
     }
 
+    public function status(Category $category)
+   {
+        if ($category->status == 1){
+            $category->update(['status'=> 0]);
+        }else{
+            $category->update(['status'=>1]);
+        }
+        Session::flash('message', "category Status Update successfully");
+        return redirect()->back();
+   }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -7,13 +7,13 @@
         </div>
     @endif
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: -40px">
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="row align-items-center my-4">
                     <div class="col">
-                        <h2 class="h3 mb-0 page-title">Category Table</h2>
-                        <p class="card-text">eCommerce Category table </p>
+                        <h2 class="h3 mb-0 page-title">Sub-Category</h2>
+                        <p class="card-text">eCommerce Sub Category table </p>
                     </div>
                     <div class="col-auto">
                         <a href="{{ route('subcategory.create') }}" class="btn btn-primary"><span
@@ -23,27 +23,22 @@
 
                 <div class="row my-4">
                     <!-- Small table -->
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="margin-top: -20px">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
-                                <div id="dataTable-1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-fotter">
-                                    <label class="searchs">Search:</label>
-                                    <input type="search" placeholder="" aria-controls="dataTable-1"
-                                        class="form-controls fomr-control-sm">
-                                </div>
                                 <table class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Category</th>
-                                            <th>title</th>
-                                            <th>Slug</th>
-                                            <th>description</th>
-                                            <th>Image</th>
-                                            <th>Action</th>
+                                            <th style="width: 1%"></th>
+                                            <th style="width: 5%">#</th>
+                                            <th style="width: 7%">Name</th>
+                                            <th style="width: 9%">Category</th>
+                                            <th style="width: 13%">title</th>
+                                            <th style="width: 28%">description</th>
+                                            <th style="width: 8%">Status</th>
+                                            <th style="width: 16%">Image</th>
+                                            <th style="width: 13%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,14 +53,59 @@
                                                 <td>{{ $subcategory->name }}</td>
                                                 <td>{{ $subcategory->category->name }}</td>
                                                 <td>{{ $subcategory->title }}</td>
-                                                <td>{{ $subcategory->slug }}</td>
+
                                                 <td>{{ $subcategory->description }}</td>
+                                                <td>
+                                                    @if ($subcategory->status == 1)
+                                                        <span class="label label-success">Active</span>
+                                                    @else
+                                                        <span class="label label-danger">Deactive</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <img src="{{ Storage::url($subcategory->image) }}" width="100px"
                                                         height="100px">
                                                 </td>
+                                                <td class="center" style="float: center;">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 p-1">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    @if ($subcategory->status == 1)
+                                                                        <a class="btn btn-success"
+                                                                            href="{{ url('/subcategory_status/' . $subcategory->id) }}">
+                                                                            <i class="halflings-icon white thumbs-up"></i>
+                                                                        </a>
+                                                                    @else
+                                                                        <a class="btn btn-danger"
+                                                                            href="{{ url('/subcategory_status/' . $subcategory->id) }}">
+                                                                            <i class="halflings-icon white thumbs-down"></i>
+                                                                        </a>
+                                                                    @endif
 
-                                                <td>
+                                                                </div>
+                                                                <div class="col-lg">
+                                                                    <a class="btn btn-info"
+                                                                        href="{{ url('/subcategory/' . $subcategory->id . '/edit') }}">
+                                                                        <i class="halflings-icon white edit"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6  p-1">
+                                                            <form action="{{ url('subcategory/' . $subcategory->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="btn btn-danger" id="delete">
+                                                                    <i class="halflings-icon white trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                                {{-- <td>
                                                     <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <span class="text-muted sr-only">Action</span>
@@ -81,7 +121,7 @@
                                                                 href="{{ url('subcategory/' . $subcategory->id . '/edit') }}">Edit</a>
                                                         </form>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>

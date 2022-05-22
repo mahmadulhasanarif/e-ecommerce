@@ -113,15 +113,15 @@ class ProductController extends Controller
      */
 
 
-    public function change_status(Request $request)
+    public function status(Product $product)
     {
-        {
-            $product = Product::find($request->id);
-            $product->status = $request->status;
-            $product->save();
-      
-            return response()->json(['message'=>'Product status change successfully.']);
+        if ($product->status == 1){
+            $product->update(['status'=> 0]);
+        }else{
+            $product->update(['status'=>1]);
         }
+        Session::flash('message', "Product Status Update successfully");
+        return redirect()->back();
     }
     /**
      * Show the form for editing the specified resource.

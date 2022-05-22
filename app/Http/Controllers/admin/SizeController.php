@@ -47,16 +47,17 @@ class SizeController extends Controller
         return redirect()->to('size');
     }
 
-    public function change_status(Request $request)
+    public function status(Size $size)
     {
-        {
-            $size = Size::find($request->id);
-            $size->status = $request->status;
-            $size->save();
-      
-            return response()->json(['success'=>'size status change successfully.']);
+        if ($size->status == 1){
+            $size->update(['status'=> 0]);
+        }else{
+            $size->update(['status'=>1]);
         }
+        Session::flash('message', "Size Status Update successfully");
+        return redirect()->back();
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -66,7 +67,7 @@ class SizeController extends Controller
     public function edit(Size $size)
     {
         $this->data['size'] = $size;
-        return view('admin.Size.form', $this->data);
+        return view('admin.Size.edit', $this->data);
     }
 
     /**
