@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('shiping_id');
             $table->foreignId('payment_id');
             $table->string('total');
-            $table->boolean('status');
+            $table->string('status');
             $table->timestamps();
         });
     }

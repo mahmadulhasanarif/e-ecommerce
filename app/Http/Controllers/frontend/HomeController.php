@@ -12,7 +12,6 @@ use App\Models\Subcategory;
 use App\Models\Unit;
 use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 
 class HomeController extends Controller
 {
@@ -25,7 +24,7 @@ class HomeController extends Controller
         $this->data['sizes'] = Size::all();
         $this->data['units'] = Unit::all();
         $this->data['subcategories'] = Subcategory::all();
-        $this->data['products'] = Product::where('status',1)->latest()->limit(8)->get();
+        $this->data['products'] = Product::where('status',1)->latest()->limit(12)->get();
 
 
         $top_sales = DB::table('products')
@@ -54,7 +53,7 @@ class HomeController extends Controller
         $this->data['units'] = Unit::all();
         $this->data['subcategories'] = Subcategory::all();
         $cat_id = $this->data['product']->cat_id;
-        $this->data['related_products'] = Product::where('cat_id', $cat_id)->limit(4)->get();
+        $this->data['related_products'] = Product::where('cat_id', $cat_id)->limit(12)->get();
         return view('frontend.product_details', $this->data);
     }
 
@@ -63,7 +62,7 @@ class HomeController extends Controller
         $this->data['categories'] = Category::all();
         $this->data['subcategories'] = Subcategory::all();
         $this->data['brands'] = Brand::all();
-        $this->data['products'] = Product::where('cat_id', $id)->limit(8)->get();
+        $this->data['products'] = Product::where('cat_id', $id)->limit(12)->get();
         $top_sales = DB::table('products')
             ->leftJoin('order_details','products.id','=','order_details.product_id')
             ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total')
@@ -85,7 +84,7 @@ class HomeController extends Controller
         $this->data['categories'] = Category::all();
         $this->data['subcategories'] = Subcategory::all();
         $this->data['brands'] = Brand::all();
-        $this->data['products'] = Product::where('subcat_id', $id)->limit(8)->get();
+        $this->data['products'] = Product::where('subcat_id', $id)->limit(12)->get();
 
         $top_sales = DB::table('products')
             ->leftJoin('order_details','products.id','=','order_details.product_id')
@@ -108,7 +107,7 @@ class HomeController extends Controller
         $this->data['categories'] = Category::all();
         $this->data['subcategories'] = Subcategory::all();
         $this->data['brands'] = Brand::all();
-        $this->data['products'] = Product::where('brand_id', $id)->limit(8)->get();
+        $this->data['products'] = Product::where('brand_id', $id)->limit(12)->get();
 
         $top_sales = DB::table('products')
             ->leftJoin('order_details','products.id','=','order_details.product_id')

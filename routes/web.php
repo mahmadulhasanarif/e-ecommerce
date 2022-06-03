@@ -41,6 +41,7 @@ Route::middleware('is_admin')->group(function(){
 
     /*--Unit Route--*/
     Route::resource('unit', UnitController::class);
+    Route::get('/unit_status/{unit}', [UnitController::class, 'status']);
 
     /*--size Route--*/
     Route::resource('size', SizeController::class);
@@ -54,22 +55,20 @@ Route::middleware('is_admin')->group(function(){
     Route::resource('product', ProductController::class);
     Route::get('/product_status/{product}', [ProductController::class, 'status']);
 
+    /*--Brand Route--*/
     Route::resource('brand', BrandController::class);
-    Route::resource('admin', AdminController::class)->except('show');
+
+    /*--Admin Route--*/
+    Route::resource('admin', AdminController::class);
+    Route::get('/admin_status/{admin}', [AdminController::class, 'status']);
 
     //order//
     Route::get('/order_manage', [OrderController::class, 'order_manage']);
     Route::get('/order_view/{id}', [OrderController::class, 'show'])->name('show.order');
     Route::get('/order_status/{order}', [OrderController::class, 'order_status']);
 
-
-    Route::view('chart', 'admin.chart.chart')->name('chart');
-    Route::view('datamap', 'admin.chart.datamap')->name('datamap');
-    Route::view('error', 'admin.page.404')->name('error');
+    Route::view('error', 'admin.order.404')->name('error');
     Route::view('deshboard', 'admin.deshboard.deshboard');
-    Route::view('deshboard/default', 'admin.deshboard.default');
-    Route::view('deshboard/earning', 'admin.deshboard.sass');
-    Route::view('table', 'admin.table.table');
 });
 
 // forntend Route//

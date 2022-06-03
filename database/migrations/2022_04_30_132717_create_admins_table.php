@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('education');
             $table->string('description');
+            $table->boolean('status')->default(true);
             $table->string('image');
             $table->timestamps();
         });

@@ -41,7 +41,7 @@
 
                                 <td class="center">
                                     @if ($order->status == 'runing')
-                                        <span class="label label-success">Active</span>
+                                        <span class="label label-success">active</span>
                                     @else
                                         <span class="label label-danger">Deactive</span>
                                     @endif
@@ -50,12 +50,12 @@
                                 </td>
                                 <td class="center">
                                     @if ($order->status == 'runing')
-                                        <a class="btn btn-danger" href="{{ url('/order_status/'. $order->id) }}">
-                                            <i class="halflings-icon white thumbs-down"></i>
+                                        <a class="btn btn-success" href="{{ url('/order_status/'. $order->id) }}">
+                                            <i class="halflings-icon white thumbs-up"></i>
                                         </a>
                                     @else
-                                        <a class="btn btn-success" href="{{ url('/order_status/' . $order->id) }}">
-                                            <i class="halflings-icon white thumbs-up"></i>
+                                        <a class="btn btn-danger" href="{{ url('/order_status/' . $order->id) }}">
+                                            <i class="halflings-icon white thumbs-down"></i>
                                         </a>
                                     @endif
 

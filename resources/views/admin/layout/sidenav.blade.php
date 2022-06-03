@@ -21,20 +21,10 @@
               <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
           </a>
           <ul class="collapse list-unstyled pl-4 w-100" id="dashboard">
-              <li class="nav-item active">
-                  <a class="nav-link pl-3" href="{{ url('deshboard/default') }}"><span
-                          class="ml-1 item-text">Default</span></a>
-              </li>
-
               <li class="nav-item">
                   <a class="nav-link pl-3" href="{{ url('deshboard') }}"><span
                           class="ml-1 item-text">E-commerce</span></a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{ url('deshboard/earning') }}"><span
-                          class="ml-1 item-text">Saas Dashboard</span></a>
-              </li>
-
           </ul>
       </li>
   </ul>
@@ -57,9 +47,6 @@
               <li class="nav-item">
                   <a class="nav-link pl-3" href="{{ route('subcategory.index') }}"><span
                           class="ml-1 item-text">Sub Category</span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{route('unit.index')}}"><span class="ml-1 item-text">All Unit</span></a>
               </li>
 
           </ul>
@@ -85,45 +72,20 @@
                   <a class="nav-link pl-3" href="{{ route('brand.index') }}"><span
                           class="ml-1 item-text">Brand Products</span></a>
               </li>
-              <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{ route('size.index') }}"><span
-                          class="ml-1 item-text">Products Size</span></a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link pl-3" href="{{ route('color.index') }}"><span
-                        class="ml-1 item-text">Products Color</span></a>
-            </li>
           </ul>
       </li>
+      
       <li class="nav-item dropdown">
-          <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-              <i class="fe fe-grid fe-16"></i>
-              <span class="ml-3 item-text">Tables</span>
-          </a>
-          <ul class="collapse list-unstyled pl-4 w-100" id="tables">
-              <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{ url('table') }}"><span
-                          class="ml-1 item-text">Data Tables</span></a>
-              </li>
-          </ul>
-      </li>
-      <li class="nav-item dropdown">
-          <a href="#charts" data-toggle="collapse" aria-expanded="false"
+          <a href="#units" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle nav-link">
               <i class="fe fe-pie-chart fe-16"></i>
-              <span class="ml-3 item-text">Charts</span>
+              <span class="ml-3 item-text">Units</span>
           </a>
-          <ul class="collapse list-unstyled pl-4 w-100" id="charts">
+          <ul class="collapse list-unstyled pl-4 w-100" id="units">
 
               <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{ route('chart') }}"><span
-                          class="ml-1 item-text">Chartjs</span></a>
-              </li>
-
-              <li class="nav-item">
-                  <a class="nav-link pl-3" href="{{ route('datamap') }}"><span
-                          class="ml-1 item-text">Datamaps</span></a>
+                  <a class="nav-link pl-3" href="{{route('unit.index')}}"><span
+                          class="ml-1 item-text">All Unit</span></a>
               </li>
           </ul>
       </li>
@@ -133,26 +95,14 @@
   </p>
   <ul class="navbar-nav flex-fill w-100 mb-2">
       <li class="nav-item dropdown">
-          <a href="#contact" data-toggle="collapse" aria-expanded="false"
+          <a href="#size_color" data-toggle="collapse" aria-expanded="false"
               class="dropdown-toggle nav-link">
               <i class="fe fe-book fe-16"></i>
-              <span class="ml-3 item-text">Contacts</span>
+              <span class="ml-3 item-text">Size Color</span>
           </a>
-          <ul class="collapse list-unstyled pl-4 w-100" id="contact">
-              <a class="nav-link pl-3" href="./contacts-list.html"><span class="ml-1">Contact
-                      List</span></a>
-              <a class="nav-link pl-3" href="./contacts-new.html"><span class="ml-1">New
-                      Contact</span></a>
-          </ul>
-      </li>
-      <li class="nav-item dropdown">
-          <a href="#profile" data-toggle="collapse" aria-expanded="false"
-              class="dropdown-toggle nav-link">
-              <i class="fe fe-user fe-16"></i>
-              <span class="ml-3 item-text">Profile</span>
-          </a>
-          <ul class="collapse list-unstyled pl-4 w-100" id="profile">
-              <a class="nav-link pl-3" href="#"><span class="ml-1">Overview</span></a>
+          <ul class="collapse list-unstyled pl-4 w-100" id="size_color">
+              <a class="nav-link pl-3" href="{{ route('color.index') }}"><span class="ml-1">Color List</span></a>
+              <a class="nav-link pl-3" href="{{ route('size.index') }}"><span class="ml-1">Size List</span></a>
           </ul>
       </li>
 

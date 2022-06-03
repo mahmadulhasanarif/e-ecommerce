@@ -94,4 +94,17 @@ class UnitController extends Controller
         Session::flash('message', 'Unit Data Deleted Successfully');
         return redirect()->back();
     }
+
+    public function status(Unit $unit)
+    {
+        if ($unit->status == 1) {
+            $unit->update(['status'=> 0]);
+        } else {
+            $unit->update(['status'=>1]);
+        }
+
+        Session::flash('message', 'Unit Status Change Successfully');
+        return redirect()->back();
+        
+    }
 }

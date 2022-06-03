@@ -23,7 +23,7 @@
 
                 <div class="row my-4">
                     <!-- Small table -->
-                    <div class="col-md-12"  style="margin-top: -20px">
+                    <div class="col-md-12" style="margin-top: -20px">
                         <div class="card shadow">
                             <div class="card-body">
                                 <!-- table -->
@@ -67,39 +67,35 @@
                                                 </td>
                                                 <td>
                                                     @if ($product->status == 1)
-                                                    <span class="label label-success">Active</span>
-                                                @else
-                                                    <span class="label label-danger">Deactive</span>
-                                                @endif  
+                                                        <span class="label label-success">Active</span>
+                                                    @else
+                                                        <span class="label label-danger">Deactive</span>
+                                                    @endif
                                                 </td>
 
                                                 <td class="center" style="float: center;">
                                                     <div class="row">
-                                                        <div class="col-lg-6 p-1">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    @if ($product->status == 1)
-                                                                        <a class="btn btn-success"
-                                                                            href="{{ url('/product_status/' . $product->id) }}">
-                                                                            <i class="halflings-icon white thumbs-up"></i>
-                                                                        </a>
-                                                                    @else
-                                                                        <a class="btn btn-danger"
-                                                                            href="{{ url('/product_status/' . $product->id) }}">
-                                                                            <i class="halflings-icon white thumbs-down"></i>
-                                                                        </a>
-                                                                    @endif
-
-                                                                </div>
-                                                                <div class="col-lg">
-                                                                    <a class="btn btn-info"
-                                                                        href="{{ url('/product/' . $product->id . '/edit') }}">
-                                                                        <i class="halflings-icon white edit"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
+                                                        <div class="col-lg-4 p-1">
+                                                            @if ($product->status == 1)
+                                                                <a class="btn btn-success"
+                                                                    href="{{ url('/product_status/' . $product->id) }}">
+                                                                    <i class="halflings-icon white thumbs-up"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="btn btn-danger"
+                                                                    href="{{ url('/product_status/' . $product->id) }}">
+                                                                    <i class="halflings-icon white thumbs-down"></i>
+                                                                </a>
+                                                            @endif
                                                         </div>
-                                                        <div class="col-lg-6  p-1">
+                                                        <div class="col-lg-4 p-1">
+                                                            <a class="btn btn-info"
+                                                                href="{{ url('/product/' . $product->id . '/edit') }}">
+                                                                <i class="halflings-icon white edit"></i>
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="col-lg-4  p-1">
                                                             <form action="{{ url('product/' . $product->id) }}"
                                                                 method="POST">
                                                                 @csrf

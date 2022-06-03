@@ -35,17 +35,14 @@
                                 <table style="color: black" class="table datatables" id="dataTable-1">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Description</th>
-                                            <th>Possition</th>
-                                            <th>Address</th>
-                                            <th>Education</th>
-                                            <th>Image</th>
-                                            <th>Date</th>
-                                            <th>Action</th>
+                                            <th style="width: 1%"></th>
+                                            <th style="width: 5%">#</th>
+                                            <th style="width: 15%">Name</th>
+                                            <th style="width: 16%">Email</th>
+                                            <th style="width: 13%">Address</th>
+                                            <th style="width: 10%">Status</th>
+                                            <th style="width: 20%">Image</th>
+                                            <th style="width: 15%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,32 +57,62 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $admin->name }}</td>
                                                 <td>{{ $admin->email }}</td>
-                                                <td>{{ $admin->description }}</td>
-                                                <td>{{ $admin->possition }}</td>
-                                                <td>{{ $admin->Address }}</td>
-                                                <td>{{ $admin->education }}</td>
+                                                <td>{{ $admin->address }}</td>
+                                                <td>
+                                                    @if ($admin->status==1)
+                                                        <span class="label label-success">Active</span>
+                                                    @else
+                                                        <span class="label label-warning">Deactive</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <img src="{{ Storage::url($admin->image) }}" height="100px"
                                                         width="100px">
                                                 </td>
-                                                <td>{{ $admin->created_at }}</td>
 
-                                                <td>
-                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
+                                                <td class="center" style="float: center;">
+                                                    <div class="row">
+                                                        <div class="col-lg-3 p-1">
+                                                            @if ($admin->status == 1)
+                                                                <a class="btn btn-success"
+                                                                    href="{{ url('/admin_status/' . $admin->id) }}">
+                                                                    <i class="halflings-icon white thumbs-up"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="btn btn-danger"
+                                                                    href="{{ url('/admin_status/' . $admin->id) }}">
+                                                                    <i class="halflings-icon white thumbs-down"></i>
+                                                                </a>
+                                                            @endif
 
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <form action="{{ url('admin/' . $admin->id) }}" method="POST">
+                                                        </div>
+
+                                                        <div class="col-lg-3 p-1">
+                                                            <a class="btn btn-info"
+                                                                href="{{ url('/admin/' . $admin->id . '/edit') }}">
+                                                                <i class="halflings-icon white edit"></i>
+                                                            </a>
+                                                        </div>
+                                                        
+                                                    <div class="col-lg-3 p-1">
+                                                        <a class="btn btn-info"
+                                                                href="{{ url('/admin/'. $admin->id) }}">
+                                                                <i class="halflings-icon white info"></i>
+                                                            </a>
+                                                    </div>
+                                                        <div class="col-lg-3  p-1">
+                                                            <form action="{{ url('admin/' . $admin->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             @method('delete')
-                                                            <button class=" btn btn-outline-danger ">Remove</button>
-                                                            <a class="btn btn-outline-warning"
-                                                                href="{{ url('admin/' . $admin->id . '/edit') }}">Edit</a>
+                                                            <button class="btn btn-danger" id="delete">
+                                                                <i class="halflings-icon white trash"></i>
+                                                            </button>
                                                         </form>
                                                     </div>
-                                                </td>
+                                                </div>
+                                                
+                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

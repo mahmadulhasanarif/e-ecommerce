@@ -225,7 +225,7 @@
                                             <div class="product-img">
                                                 <a href="{{ url('product_view/' . $topProduct->id) }}">
                                                     <img src="{{ asset('/image/' . $images) }}" width="256px"
-                                                        height="256px" alt="">
+                                                        height="220px" alt="">
                                                     <div class="product-label">
                                                         <span class="sale">-30%</span>
                                                         <span class="new">NEW</span>

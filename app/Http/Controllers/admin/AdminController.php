@@ -50,6 +50,12 @@ class AdminController extends Controller
         return redirect()->to('admin');
     }
 
+    public function show(Admin $admin)
+    {
+        $this->data['admin'] = $admin;
+        return view('admin.admins.show', $this->data);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -110,5 +116,17 @@ class AdminController extends Controller
         
         Session::flash('message', 'Admin Deleted Successfully');
         return redirect()->back();
+    }
+    public function status(Admin $admin)
+    {
+        if ($admin->status == 1) {
+            $admin->update(['status'=> 0]);
+        } else {
+            $admin->update(['status'=>1]);
+        }
+
+        Session::flash('message', 'Admin Status Change Successfully');
+        return redirect()->back();
+        
     }
 }

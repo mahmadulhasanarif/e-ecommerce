@@ -139,7 +139,7 @@ class ProductController extends Controller
         $this->data['sizes'] = Size::all();
         $this->data['units'] = Unit::all();
         $this->data['subcategories'] = Subcategory::all();
-        if($product->imaga){
+        if($product->image){
             $this->data['product']->image = Storage::url($product->image);
         }
         return view('admin.product.form', $this->data);

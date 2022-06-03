@@ -68,69 +68,51 @@
                                                 </td>
                                                 <td class="center" style="float: center;">
                                                     <div class="row">
-                                                        <div class="col-lg-6 p-1">
-                                                            <div class="row">
-                                                                <div class="col">
-                                                                    @if ($subcategory->status == 1)
-                                                                        <a class="btn btn-success"
-                                                                            href="{{ url('/subcategory_status/' . $subcategory->id) }}">
-                                                                            <i class="halflings-icon white thumbs-up"></i>
-                                                                        </a>
-                                                                    @else
-                                                                        <a class="btn btn-danger"
-                                                                            href="{{ url('/subcategory_status/' . $subcategory->id) }}">
-                                                                            <i class="halflings-icon white thumbs-down"></i>
-                                                                        </a>
-                                                                    @endif
+                                                        <div class="col-lg-4 p-1">
+                                                            @if ($subcategory->status == 1)
+                                                                <a class="btn btn-success"
+                                                                    href="{{ url('/subcategory_status/' . $subcategory->id) }}">
+                                                                    <i class="halflings-icon white thumbs-up"></i>
+                                                                </a>
+                                                            @else
+                                                                <a class="btn btn-danger"
+                                                                    href="{{ url('/subcategory_status/' . $subcategory->id) }}">
+                                                                    <i class="halflings-icon white thumbs-down"></i>
+                                                                </a>
+                                                            @endif
 
-                                                                </div>
-                                                                <div class="col-lg">
-                                                                    <a class="btn btn-info"
-                                                                        href="{{ url('/subcategory/' . $subcategory->id . '/edit') }}">
-                                                                        <i class="halflings-icon white edit"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
                                                         </div>
-                                                        <div class="col-lg-6  p-1">
+
+                                                        <div class="col-lg-4 p-1">
+                                                            <a class="btn btn-info"
+                                                                href="{{ url('/subcategory/' . $subcategory->id . '/edit') }}">
+                                                                <i class="halflings-icon white edit"></i>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-lg-4  p-1">
                                                             <form action="{{ url('subcategory/' . $subcategory->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <button class="btn btn-danger" id="delete">
-                                                                    <i class="halflings-icon white trash"></i>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                                {{-- <td>
-                                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="text-muted sr-only">Action</span>
-                                                    </button>
-
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <form action="{{ url('subcategory/' . $subcategory->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('delete')
-                                                            <button class=" btn btn-outline-danger ">Remove</button>
-                                                            <a class="btn btn-outline-warning"
-                                                                href="{{ url('subcategory/' . $subcategory->id . '/edit') }}">Edit</a>
+                                                            <button class="btn btn-danger" id="delete">
+                                                                <i class="halflings-icon white trash"></i>
+                                                            </button>
                                                         </form>
                                                     </div>
-                                                </td> --}}
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> <!-- simple table -->
-                </div> <!-- end section -->
-            </div> <!-- .col-12 -->
-        </div> <!-- .row -->
+                                                </div>
+                                                
+                                                 </td>
+
+
+                        </tr>
+                        @endforeach
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- simple table -->
+        </div> <!-- end section -->
+    </div> <!-- .col-12 -->
+    </div> <!-- .row -->
     </div> <!-- .container-fluid -->
 @endsection
