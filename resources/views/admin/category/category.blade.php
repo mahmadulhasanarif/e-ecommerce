@@ -70,7 +70,7 @@
 
                                                 <td class="center" style="float: center;">
                                                     <div class="row">
-                                                    <div class="col-lg-6 p-1">
+                                                    <div class="col-lg-3 p-1">
                                                         @if ($category->status == 1)
                                                             <a class="btn btn-success"
                                                                 href="{{ url('/category_status/' . $category->id) }}">
@@ -83,7 +83,13 @@
                                                             </a>
                                                         @endif
                                                     </div>
-                                                    <div class="col-lg-6  p-1">
+                                                    <div class="col-lg-3 p-1">
+                                                        <a class="btn btn-info"
+                                                                href="{{ url('/category/'. $category->id .'/edit') }}">
+                                                                <i class="halflings-icon info edit"></i>
+                                                            </a>
+                                                    </div>
+                                                    <div class="col-lg-3  p-1">
                                                     <form action="{{ url('category/' . $category->id) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
@@ -92,6 +98,7 @@
                                                         </button>
                                                     </form>
                                                     </div>
+                                               
                                                 </div>
                                                 </td>
 

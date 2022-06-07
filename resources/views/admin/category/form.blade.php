@@ -1,21 +1,28 @@
 @extends('admin.master')
 
 @section('content')
-    <form class="col-lg-7 col-md-6 col-6 mx-auto text-center" method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
+    <form class="col-lg-7 col-md-6 col-6 mx-auto text-center" method="POST" action="{{url('category/'. $category->id)}}" enctype="multipart/form-data">
         @csrf
+        @if ($category->id)
+            @method('PUT')
+        @endif
         <h1 class="h6 mb-3" style="margin-top: -8px">Category From</h1>
         <div class="form-group">
             <label for="inputEmail" class="sr-only">Category Name:</label>
             <input type="text" name="name" id="inputEmail"
                 class="form-control form-control-lg @error('name') is-invalid @else is-valid @enderror"
-                placeholder="Category Name" required="">
+                placeholder="Category Name" value="{{old('name', $category->name)}}" required="">
         </div>
         <div class="form-group">
             <label for="inputPassword" class="sr-only">Category Slug</label>
             <input type="text" name="slug" id="inputSlug"
                 class="form-control form-control-lg @error('slug') is-invalid @else is-valid @enderror"
-                placeholder="Category Slug" required="">
+                placeholder="Category Slug" value="{{old('slug', $category->slug)}}" required="">
         </div>
+
+        @if ($category->image)
+            <img src="{{ $category->image }}" alt="" width="100px" height="100px">
+        @endif
 
         <div class="form-group">
             <label for="inputImagae" class="sr-only">Category Image:</label>

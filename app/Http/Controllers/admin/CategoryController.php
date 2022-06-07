@@ -49,6 +49,35 @@ class CategoryController extends Controller
         return redirect()->to('category');
     }
 
+    public function edit(Category $category)
+    {
+        $this->data['category'] = $category;
+        if ($category->image) {
+            $this->data['category']->image = Storage::url($category->image);     
+        }
+        return view('admin.category.form', $this->data);
+    }
+
+    public function update(Category $category, Request $request)
+    {
+        $this->data = $request->all();
+
+        $category->name = $this->data['name'];
+        $category->slug = $this->data['slug'];
+        if($request->file('image')){
+            if($category->image){
+                Storage::delete($category->image);
+            }
+
+            $category->image = Storage::putFile('/images', $request->file('image'));
+        }
+
+        $category->save();
+
+        Session::flash('message', 'Category Updated Successfully');
+        return redirect()->to('category');
+    }
+
     public function status(Category $category)
    {
         if ($category->status == 1){

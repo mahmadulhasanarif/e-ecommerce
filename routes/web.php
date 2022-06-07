@@ -32,7 +32,7 @@ Auth::routes(['verify'=> true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware('is_admin')->group(function(){
     /*--Category Route--*/
-    Route::resource('category', CategoryController::class)->except('show', 'update', 'edit');
+    Route::resource('category', CategoryController::class)->except('show');
     Route::get('/category_status/{category}', [CategoryController::class, 'status']);
 
     /*--Sub Category Route--*/
