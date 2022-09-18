@@ -1,0 +1,48 @@
+@extends('admin.master')
+@section('content')
+    <div class="py-12">
+        <div class="container">
+            <div class="card mt-4">
+                <div class="card-header"><a style="float: right" href="{{ route('shiping.create') }}" class="btn btn-primary">Add Shiping</a></div>
+                <div class="card-body">
+                        @if (session('message'))
+                            <div class="alert alert-success " role="alert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col" width="10%" scope="col">SL NO</th>
+                                <th scope="col" width="10%">Name</th>
+                                <th scope="col" width="15%">Email</th>
+                                <th scope="col" width="20%">Address</th>
+                                <th scope="col" width="15%">Phone</th>
+                                <th scope="col" width="15%">Created at</th>
+                                <th scope="col" width="15%"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($shipings as $shiping)
+                                <tr>
+                                <th scope="row">{{ $shipings->firstItem()+$loop->index }}</th>
+                                <td>{{ $shiping->name }}</td>
+                                <td>{{ $shiping->email }}</td>
+                                <td>{{ $shiping->address }}</td>
+                                <td>{{ $shiping->phone }}</td>
+                                <td>{{Carbon\Carbon::parse( $shiping->created_at )->diffForHumans()}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ route('shiping.edit',$shiping->id) }}">Edit</a>
+                                    <a class="btn btn-danger"  href="{{ route('shiping.destroy',$shiping->id) }}">Delete</a>
+                                </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $shipings->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+         
+@endsection
