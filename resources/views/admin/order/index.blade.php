@@ -32,8 +32,8 @@
                                 <td>{{ $order->total }}</td>
                                 <td>{{Carbon\Carbon::parse( $order->created_at )->diffForHumans()}}</td>
                                 <td>
+                                    <a class="btn btn-info"  href="{{ route('order.show',$order->id) }}">show</a>
                                     <a class="btn btn-danger"  href="{{ route('order.destroy',$order->id) }}">Delete</a>
-                                    <a class="btn btn-danger"  href="{{ route('order.show',$order->id) }}">Delete</a>
                                 </td>
                                 </tr>
                                 @endforeach

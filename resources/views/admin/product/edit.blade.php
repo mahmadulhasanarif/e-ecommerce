@@ -119,11 +119,9 @@
                             @php
                                 $product['image'] = explode('|', $product->image);
                             @endphp
-        
-                        @foreach ($product->image as $images)
-                        <img src="{{ asset('images/product/'. $images) }}" height="70px"
-                            width="100px">
-                        @endforeach
+                            @foreach ($product['image'] as $images)
+                            <img src="{{ asset('/images/product/' . $images) }}" height="150px" width="200px">
+                            @endforeach
                         </div>
         
                         <div class="form-group">

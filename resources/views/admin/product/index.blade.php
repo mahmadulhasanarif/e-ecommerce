@@ -14,11 +14,10 @@
                         <thead>
                             <tr>
                                 <th style="width: 5%">SL</th>
-                                <th style="width: 5%">Code</th>
-                                <th style="width: 10%">Product</th>
-                                <th style="width: 8%">Price</th>
+                                <th style="width: 12%">Product</th>
+                                <th style="width: 10%">Price</th>
                                 <th style="width: 9%">category</th>
-                                <th style="width: 27%">Description</th>
+                                <th style="width: 28%">Description</th>
                                 <th style="width: 20%">Image</th>
                                 <th style="width: 16%">Action</th>
                             </tr>
@@ -29,12 +28,7 @@
                                         $product['image'] = explode('|', $product->image);
                                     @endphp
                                     <tr>
-                                        <td>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox">
-                                            </div>
-                                        </td>
-                                        <td>{{ $product->code }}</td>
+                                        <td>{{ $products->firstItem()+$loop->index }}</td>
                                         <td>{{ $product->name }}</td>
                                         <td>&#2547 {{ $product->price }}</td>
                                         <td>{{ $product->category->name }}</td>

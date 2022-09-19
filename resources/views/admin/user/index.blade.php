@@ -17,7 +17,11 @@
                                 <th scope="col" width="10%">Name</th>
                                 <th scope="col" width="15%">Email</th>
                                 <th scope="col" width="10%">Created at</th>
+                                @if (Auth::user()->name == 'admin')
                                 <th scope="col" width="15%"><b>Action</b></th>
+                                @else
+                                <th scope="col" width="15%"><b>Updated at</b></th>
+                                @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,9 +31,13 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{Carbon\Carbon::parse( $user->created_at )->diffForHumans()}}</td>
+                                @if (Auth::user()->name == 'admin')
                                 <td>
-                                    <a class="btn btn-danger"  href="{{ route('user.destroy',$user->id) }}">Delete</a>
+                                    <a class="btn btn-danger" disable href="{{ route('user.destroy',$user->id) }}">Delete</a>
                                 </td>
+                                @else
+                                <td>{{Carbon\Carbon::parse( $user->updated_at )->diffForHumans()}}</td>
+                                @endif
                                 </tr>
                                 @endforeach
                             </tbody>
